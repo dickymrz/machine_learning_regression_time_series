@@ -1,0 +1,25 @@
+# 1. Berapa rata-rata umur customer jika dilihat dari marital statusnya ?
+select "Marital Status" , round(avg(age)) as avg_umur
+from customer
+group by "Marital Status"
+
+# 2. Berapa rata-rata umur customer jika dilihat dari gender nya ?
+select gender, round(avg(age)) as avg_age
+from customer
+group by gender
+
+# 3. Tentukan nama store dengan total quantity terbanyak!
+select storename, sum(qty) as total_qty
+from transaction
+join store on transaction.storeid = store.storeid
+group by storename
+order by total_qty desc
+limit 1
+
+# 4. Tentukan nama produk terlaris dengan total amount terbanyak!
+select "Product Name", sum(totalamount) as total_amount
+from transaction
+join product on transaction.productid = product.productid
+group by "Product Name"
+order by total_amount desc
+limit 1
